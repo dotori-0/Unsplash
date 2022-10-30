@@ -34,6 +34,7 @@ class SearchView: BaseView {
     }
     
     override func setHierarchy() {  // addSubView, CollectionView init, SnapKit 구성 등
+        // CollectionView init의 경우 프로퍼티 선언은 타입 선언만 묵시적 옵셔널 해제로 해 놓고 이니셜라이징을 여기에서 하는 건지❔
         [searchBar, collectionView].forEach {
             addSubview($0)
         }
