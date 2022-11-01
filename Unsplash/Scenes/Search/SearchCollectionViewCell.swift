@@ -9,12 +9,17 @@ import UIKit
 
 class SearchCollectionViewCell: BaseCollectionViewCell {
     // MARK: - Properties
-    let photoImageView = UIImageView()
+    let photoImageView = UIImageView().then {
+        $0.clipsToBounds = false
+        $0.contentMode = .scaleAspectFit
+    }
     let likesLabel = UILabel()
     
     // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        setBackground()
     }
     
     required init?(coder: NSCoder) {
@@ -36,5 +41,14 @@ class SearchCollectionViewCell: BaseCollectionViewCell {
         likesLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
+    }
+    
+    
+    private func setBackground() {
+        var backgroundConfig = UIBackgroundConfiguration.listPlainCell()
+        backgroundConfig.strokeWidth = 2
+        backgroundConfig.strokeColor = .systemPink
+        
+        backgroundConfiguration = backgroundConfig
     }
 }

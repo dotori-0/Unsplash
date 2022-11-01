@@ -41,13 +41,12 @@ class SearchViewController: BaseViewController {
     
     private func configureDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<SearchCollectionViewCell, SearchResult> { cell, indexPath, itemIdentifier in
-            // 커스텀 셀에 UIListContentConfiguration 쓰는 방법 ❔
-            cell.likesLabel.text = "􀊵 \(itemIdentifier.likes)"
+            cell.likesLabel.text = "♥︎ \(itemIdentifier.likes)"
             
             // String > URL > Data > Image
             // 다운로드를 받는 동안 다른 작업을 할 수 있게 백그라운드 스레드에서 네트워크 통신 작업
             DispatchQueue.global().async {
-                guard let url = URL(string: itemIdentifier.urls.regular) else { return }
+                guard let url = URL(string: itemIdentifier.urls.thumb) else { return }
                 
                 guard let data = try? Data(contentsOf: url) else { return }
                 
